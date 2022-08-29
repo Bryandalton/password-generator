@@ -19,14 +19,15 @@ console.log(SYMBOL_CHAR_CODES)
 function generatePassword() {
   var characterAmmount = prompt("Please select password lenght between 8 and 120 characters.")
 if (characterAmmount < 8) {
-  alert("Too few charaters!")
+  alert("Too few charaters!");
+  generatePassword();
 } else if (characterAmmount > 128) {
-  alert("Too many characters!")
+  alert("Too many characters!");
+  generatePassword();
 }
 var includeUpperCase = confirm("Use uppercase characters?")
 var includeNum = confirm("Use numbers?")
 var includeSymbols = confirm("Use Symbols?")
-
 
   let charCodes = lOWERCASE_CHAR_CODES;
   if (includeUpperCase){
@@ -36,16 +37,18 @@ var includeSymbols = confirm("Use Symbols?")
     charCodes = charCodes.concat(NUMBER_CHAR_CODES)
   }
   if (includeSymbols) {
-    charCodes.concat(SYMBOL_CHAR_CODES)
+    charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
   }
 
-  
   var passwordCharacters = []
   for (let i = 0; i < characterAmmount; i++) {
     var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
     passwordCharacters.push(String.fromCharCode(characterCode))
   }
-
+  console.log(includeNum)
+  console.log(includeSymbols)
+  console.log(includeUpperCase)
+  console.log(characterAmmount)
   return passwordCharacters.join("")
 }
 
@@ -67,8 +70,3 @@ function arrayFromLowToHigh(low, high) {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword)
-
-console.log(includeNum)
-console.log(includeSymbols)
-console.log(includeUpperCase)
-console.log(characterAmmount)
