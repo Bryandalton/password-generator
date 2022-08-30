@@ -17,14 +17,18 @@ console.log(SYMBOL_CHAR_CODES)
 
 // Write password to the #password input
 function generatePassword() {
-  var characterAmmount = prompt("Please select password lenght between 8 and 120 characters.")
-if (characterAmmount < 8) {
-  alert("Too few charaters!");
-  generatePassword();
-} else if (characterAmmount > 128) {
-  alert("Too many characters!");
-  generatePassword();
+  var characterAmmount = prompt("Please select password length between 8 and 128 characters.")
+  console.log(typeof characterAmmount);
+
+  // returns only fail states
+if (characterAmmount < 8 || characterAmmount > 128) {
+  alert("choose between 8 and 128 characters!");
+  return;
+} else if(isNaN(parseInt(characterAmmount))) { //typeof characterAmmount !== "number"){
+  alert("Invalid input");
+  return;
 }
+
 var includeUpperCase = confirm("Use uppercase characters?")
 var includeNum = confirm("Use numbers?")
 var includeSymbols = confirm("Use Symbols?")
@@ -51,7 +55,7 @@ var includeSymbols = confirm("Use Symbols?")
   console.log(characterAmmount)
   return passwordCharacters.join("")
 }
-
+// generate password 
 function writePassword() {
   
   var password = generatePassword();
